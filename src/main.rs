@@ -1,12 +1,15 @@
 use num::Complex;
 
-fn complex_square_add_loop(c: Complex<f64>) {
+fn escape_time(c: Complex<f64>, limit: usize) -> Option<usize> {
     let mut z = Complex { re: 0.0, im: 0.0 };
-    loop {
+    for i in 0..limit {
+        if z.norm_sqr() > 4.0 {
+            return Some(i);
+        }
         z = z * z + c;
-        println!("{:?}", z);
     }
+    None
 }
 fn main() {
-    complex_square_add_loop(2.0.into());
+    escape_time(Complex { re: 0.0, im: 0.0 }, 1000);
 }
