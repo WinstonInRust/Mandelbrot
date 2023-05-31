@@ -21,6 +21,13 @@ fn parse_pair<T: FromStr>(s: &str, separator: char) -> Option<(T, T)> {
         },
     }
 }
+
+fn parse_complex(s: &str) -> Option<Complex<f64>> {
+    match parse_pair::<f64>(s, ',') {
+        None => None,
+        Some((re, im)) => Some(Complex { re, im }),
+    }
+}
 fn main() {
     escape_time(Complex { re: 0.0, im: 0.0 }, 1000);
 }
